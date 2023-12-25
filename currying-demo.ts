@@ -25,13 +25,24 @@ const dec: Dec = f_sum(-1)
 
 console.log(dec(6))
 
-type Curry2 = (f: (a: number, b: number) => number)
+type CurryNum = (f: (a: number, b: number) => number)
     => (a: number)
     => (b: number)
     => number
-    
-const curry2:Curry2 = f => a => b => f(a,b)
 
-const f_sum2 = curry2(normal_sum)
+const curryNum:CurryNum = f => a => b => f(a,b)
+
+const f_sum2 = curryNum(normal_sum)
 
 console.log(f_sum2(1)(2))
+
+type CurryAny = <A,B,Z>(f: (a:A, b:B) => Z)
+    => (a: A)
+    => (b: B)
+    => Z
+
+const curryAny: CurryAny = f => a => b => f(a,b)
+
+const sum2 = curryAny(normal_sum)
+
+console.log(sum2(1)(3))
