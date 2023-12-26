@@ -11,3 +11,30 @@ const increment: Increment = x => x+1
 
 const composed = compose(increment,divideTwo)
 console.log(composed(8))
+console.log(composed(0))
+
+type Option<A> = Some<A> | None
+interface Some<A> {
+    _tag: 'Some'
+    value: A
+}
+
+interface None {
+    _tag: 'None'
+}
+
+const some = <A>(x: A): Option<A> => ({_tag: 'Some', value:x})
+const none: Option<never> = {_tag: 'None'}
+
+const isNone = <A>(x: Option<A>): x is None => x._tag === 'None'
+
+type DivideTwo2 = (x: number) => Option<number>
+const divideTwo2: DivideTwo2 = x => x === 0 ? none : some(2/x)
+
+const compose2 = compose(
+        (x: Option<number>) => isNone(x) ? none : some(increment(x.value)),
+        divideTwo2
+    )
+
+console.log(compose2(8))
+console.log(compose2(0))
