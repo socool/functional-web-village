@@ -28,7 +28,7 @@ const sum_all: SumAll = xs=>{
     return head + sum_all(rest)
 }
 
-console.log(sum_all([1,2,3,4]))
+console.log(sum_all([1,2,3,4,5]))
 
 const sum_all2: SumAll = xs => (xs.length === 0) ? 0 : xs[0] + sum_all2(xs.slice(1))
 
