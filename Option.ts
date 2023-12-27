@@ -5,7 +5,7 @@ export interface Some<A> {
     value: A
 }
 
-interface None {
+export interface None {
     _tag: 'None'
 }
 
