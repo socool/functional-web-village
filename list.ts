@@ -28,3 +28,9 @@ console.log(JSON.stringify(myList,null,2))
 //"a", "b", "c"
 const strList = cons("a", cons("b",cons("c", nil)))
 console.log(JSON.stringify(strList,null,2))
+
+type ShowList = <A>(xs: List<A>) => string
+const showList: ShowList = xs =>
+    isNil(xs) ? '' : `${xs.head}` + (isNil(xs.tail) ? '' : `,${showList(xs.tail)}`) 
+
+console.log(showList(myList))
