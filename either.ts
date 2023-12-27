@@ -12,27 +12,27 @@ function divideTwoIfEven(num: number): number{
 console.log(divideTwoIfEven(8))
 // console.log(divideTwoIfEven(3))// need to convert to total function
 
-type Either<E,A> = Left<E> | Right<A>
-interface Left<E> {
+export type Either<E,A> = Left<E> | Right<A>
+export interface Left<E> {
     _tag: 'Left'
     left: E
 }
-interface Right<A> {
+export interface Right<A> {
     _tag: 'Right'
     right: A
 }
 
-const left = <E, A>(e: E): Either<E, A> => ({
+export const left = <E, A>(e: E): Either<E, A> => ({
     _tag: 'Left',
     left: e
 })
 
-const right = <E, A>(a: A): Either<E, A> =>({
+export const right = <E, A>(a: A): Either<E, A> =>({
     _tag: 'Right',
     right: a
 })
 
-const isLeft = <E, A>(x: Either<E, A>): x is Left<E> => x._tag === 'Left'
+export const isLeft = <E, A>(x: Either<E, A>): x is Left<E> => x._tag === 'Left'
 
 function divideTwoIfEven2(num: number): Either<string, number>{
     if(num === 0){
