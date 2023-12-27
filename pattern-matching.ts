@@ -1,5 +1,6 @@
 import {Option, None, none, Some, some, isNone} from './Option'
 import {Either, Left, left, Right, right, isLeft} from './either'
+import {List, Nil, nil, Cons, cons, isNil} from './list'
 // Option
 type MatchOption = <A,B>(onNone: () => B, onSome: (a: A) => B)
 => (x: Option<A>) => B
@@ -29,3 +30,19 @@ const result2 = matchE(
 )(errorOrNum)
 
 console.log(result2)
+
+// List
+type MatchList = <A, B>(onNil: () => B, onCons: (head: A, tail: List<A>) => B)
+    => (xs: List<A>) => B
+
+const matchL: MatchList = (onNil, onCons) => xs => 
+    isNil(xs) ? onNil() : onCons(xs.head, xs.tail)
+
+// const myList: List<number> = cons(1, cons(2, cons(3, nil)))
+const myList: List<number> = nil
+const result3 = matchL(
+    () => `list is empty`,
+    (head: number, tail: List<number>) => `head is ${head}`
+)(myList)
+
+console.log(result3)
