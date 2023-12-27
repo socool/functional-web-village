@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/socool/functional-web-village/issues"
   },
-  "homepage": "https://github.com/socool/functional-web-village#readme"
+  "homepage": "https://github.com/socool/functional-web-village#readme",
+  "dependencies": {
+    "ts-pattern": "^5.0.6"
+  }
 }

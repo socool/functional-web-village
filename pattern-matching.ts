@@ -1,6 +1,7 @@
 import {Option, None, none, Some, some, isNone} from './Option'
 import {Either, Left, left, Right, right, isLeft} from './either'
 import {List, Nil, nil, Cons, cons, isNil} from './list'
+import {match as matchTs} from 'ts-pattern'
 // Option
 type MatchOption = <A,B>(onNone: () => B, onSome: (a: A) => B)
 => (x: Option<A>) => B
@@ -46,3 +47,11 @@ const result3 = matchL(
 )(myList)
 
 console.log(result3)
+
+const myList2: List<number> = cons(1, cons(2, cons(3, nil)))
+const result4 = matchTs(myList2)
+    .with({_tag: 'Nil'},() => `list is empty`)
+    .with({_tag: 'Cons'},({head, tail}: Cons<number>) => `head is ${head}`)
+    .exhaustive()
+
+console.log(result4)
