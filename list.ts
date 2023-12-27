@@ -24,3 +24,7 @@ const isNil = <A>(xs: List<A>): xs is Nil => xs._tag === 'Nil'
 const myList = cons(1, cons(2,cons(3, nil)))
 
 console.log(JSON.stringify(myList,null,2))
+
+//"a", "b", "c"
+const strList = cons("a", cons("b",cons("c", nil)))
+console.log(JSON.stringify(strList,null,2))
