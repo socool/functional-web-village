@@ -16,4 +16,16 @@ const result1 = match(
 console.log(result1)
 
 // Either
-// type eMatch 
+type MatchEither = <E, A, B> (onLeft: (e: E)=> B, onRight: (a: A) => B)
+    => (x: Either<E, A>) => B
+
+const matchE: MatchEither = (onLeft, onRight) => x =>
+    isLeft(x) ? onLeft(x.left) : onRight(x.right)
+
+const errorOrNum: Either<string, number> = right(12)
+const result2 = matchE(
+    (e: string) => `Error happened: ${e}`,
+    (a: number) => `num is ${a}`
+)(errorOrNum)
+
+console.log(result2)
