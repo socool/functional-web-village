@@ -17,3 +17,11 @@ const multiplyAll: MultiplyAll =
         (head: number, tail: List<number>) => head * multiplyAll(tail)
     )
 console.log(multiplyAll(cons(2,cons(3,cons(4,nil)))))
+
+type AppendAll = (xs: List<string>) => string
+const appendAll: AppendAll = 
+    matchL(
+        () => '',
+        (head: string, tail: List<string>) => head + appendAll(tail)
+    )
+console.log(appendAll(cons('hello',cons(' ',cons('world!',nil)))))
