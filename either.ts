@@ -9,7 +9,7 @@ function divideTwoIfEven(num: number): number{
     }
 }
 
-console.log(divideTwoIfEven(8))
+// console.log(divideTwoIfEven(8))
 // console.log(divideTwoIfEven(3))// need to convert to total function
 
 export type Either<E,A> = Left<E> | Right<A>
@@ -44,9 +44,9 @@ function divideTwoIfEven2(num: number): Either<string, number>{
     }
 }
 
-console.log(divideTwoIfEven2(8))
-console.log(divideTwoIfEven2(0))
-console.log(divideTwoIfEven2(3))
+// console.log(divideTwoIfEven2(8))
+// console.log(divideTwoIfEven2(0))
+// console.log(divideTwoIfEven2(3))
 
 type Increment = (x: number) => number
 const increment: Increment = x => x+1
@@ -56,6 +56,6 @@ const composed = compose(
     divideTwoIfEven2
 )
 
-console.log(composed(8))
-console.log(composed(0))
-console.log(composed(3))
+// console.log(composed(8))
+// console.log(composed(0))
+// console.log(composed(3))

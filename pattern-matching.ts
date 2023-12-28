@@ -15,7 +15,7 @@ const result1 = match(
     (a: number) => `num is ${a}`
 )(mayBeNum)
 
-console.log(result1)
+// console.log(result1)
 
 // Either
 type MatchEither = <E, A, B> (onLeft: (e: E)=> B, onRight: (a: A) => B)
@@ -30,13 +30,13 @@ const result2 = matchE(
     (a: number) => `num is ${a}`
 )(errorOrNum)
 
-console.log(result2)
+// console.log(result2)
 
 // List
 type MatchList = <A, B>(onNil: () => B, onCons: (head: A, tail: List<A>) => B)
     => (xs: List<A>) => B
 
-const matchL: MatchList = (onNil, onCons) => xs => 
+export const matchL: MatchList = (onNil, onCons) => xs => 
     isNil(xs) ? onNil() : onCons(xs.head, xs.tail)
 
 // const myList: List<number> = cons(1, cons(2, cons(3, nil)))
@@ -46,7 +46,7 @@ const result3 = matchL(
     (head: number, tail: List<number>) => `head is ${head}`
 )(myList)
 
-console.log(result3)
+// console.log(result3)
 
 const myList2: List<number> = cons(1, cons(2, cons(3, nil)))
 const result4 = matchTs(myList2)
@@ -54,4 +54,4 @@ const result4 = matchTs(myList2)
     .with({_tag: 'Cons'},({head, tail}: Cons<number>) => `head is ${head}`)
     .exhaustive()
 
-console.log(result4)
+// console.log(result4)
