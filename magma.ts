@@ -25,3 +25,27 @@ const appendAll: AppendAll =
         (head: string, tail: List<string>) => head + appendAll(tail)
     )
 console.log(appendAll(cons('hello',cons(' ',cons('world!',nil)))))
+
+
+
+
+interface Magma<A> {
+    concat: (x: A, y: A) => A
+}
+
+interface Semigroup<A> extends Magma<A> {}
+
+const addSemigroup: Semigroup<number> = {concat: (x,y) => x + y}
+const multiplySemigroup: Semigroup<number> = {concat: (x,y) => x * y}
+const appendSemigroup: Semigroup<string> = {concat: (x,y)=> x.concat(y)}
+
+const concatAll = 
+    <A>(s: Semigroup<A>)=>
+    (startWith: A)=>
+    (xs: List<A>): A=>
+        matchL(
+            () => startWith,
+            (head: A, tail: List<A>) => s.concat(head, concatAll(s)(startWith)(tail))
+        )(xs)
+console.log(concatAll(addSemigroup)(0)(cons(2,cons(3,cons(4,nil)))))
+console.log(concatAll(multiplySemigroup)(1)(cons(2,cons(3,cons(4,nil)))))
