@@ -49,3 +49,5 @@ const concatAll =
         )(xs)
 console.log(concatAll(addSemigroup)(0)(cons(2,cons(3,cons(4,nil)))))
 console.log(concatAll(multiplySemigroup)(1)(cons(2,cons(3,cons(4,nil)))))
+console.log(concatAll(appendSemigroup)('')(cons('hello',cons(' ', cons('world!',nil)))))
+
